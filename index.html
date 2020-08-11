@@ -64,6 +64,14 @@
     // Set chart options
     var options = {
       width: 600,
+      sankey: {
+        colors: [
+      '#a6cee3',        // Custom color palette for sankey links.
+      '#1f78b4',        // Nodes will cycle through this palette
+      '#b2df8a',        // giving the links for that node the color.
+      '#33a02c'
+    ]
+      }
     };
 
     // Instantiate and draw our chart, passing in some options.

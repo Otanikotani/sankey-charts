@@ -1,12 +1,12 @@
 <head>
-  <style> body {
-          margin: 0;
-      } </style>
+    <style> body {
+        margin: 0;
+    } </style>
 
-  <script src="//unpkg.com/three"></script>
-  <script src="//unpkg.com/three-spritetext"></script>
-  <script src="//unpkg.com/3d-force-graph"></script>
-  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+    <script src="//unpkg.com/three"></script>
+    <script src="//unpkg.com/three-spritetext"></script>
+    <script src="//unpkg.com/3d-force-graph"></script>
+    <!--<script src="../../dist/3d-force-graph.js"></script>-->
 </head>
 
 <body>
@@ -17,38 +17,38 @@
     const gData = {
         nodes: [
             {id: "EC2 Image", group: 3},
+            {id: "EC2 Instance", group: 3},
+            {id: "InstanceType", group: 3},
+            {id: "AutoScaling Group", group: 2},
+            {id: "Scaling Activity", group: 2},
             {id: "Launch Configuration", group: 4},
             {id: "Launch Template Version", group: 4},
             {id: "Launch Template", group: 4},
-            {id: "AutoScaling Group", group: 2},
-            {id: "Scaling Activity", group: 2},
-            {id: "EC2 Instance", group: 3},
-            {id: "InstanceType", group: 3},
             {id: "Beanstalk Configuration Settings", group: 1},
             {id: "Beanstalk Application Environment", group: 1},
             {id: "Beanstalk Application", group: 1},
             {id: "Beanstalk Application Version", group: 1},
         ],
         links: [
-            {"source": "Launch Configuration", "target": "EC2 Image", value: 1, "text": "USES_IMAGE"},
-            {"source": "Launch Template Version", "target": "EC2 Image", value: 1, "text": "USES_IMAGE"},
-            {"source": "Beanstalk Application Version", "target": "Beanstalk Application", value: 1, "text": "OF_APP"},
-            {"source": "Beanstalk Application", "target": "Beanstalk Application Version", value: 1, "text": "HAS_VERSION"},
-            {"source": "Beanstalk Application", "target": "Beanstalk Application Environment", value: 1, "text": "HAS_ENVIRONMENT"},
-            {"source": "Beanstalk Application Environment", "target": "Beanstalk Configuration Settings", value: 1, "text": "HAS_CONFIGURATION"},
-            {"source": "Beanstalk Configuration Settings", "target": "AutoScaling Group", value: 1, "text": "USE_ASG"},
-            {"source": "AutoScaling Group", "target": "Scaling Activity", value: 1, "text": "HAS_SCALING_ACTIVITY"},
-            {"source": "AutoScaling Group", "target": "Launch Template Version", value: 1, "text": "HAS_LAUNCH_TEMPLATE_VERSION"},
-            {"source": "AutoScaling Group", "target": "Launch Template", value: 1, "text": "HAS_LAUNCH_TEMPLATE"},
-            {"source": "AutoScaling Group", "target": "Launch Configuration", value: 1, "text": "HAS_LAUNCH_CONFIG"},
-            {"source": "Launch Template", "target": "Launch Template Version", value: 1, "text": "HAS_VERSION"},
-            {"source": "Launch Template Version", "target": "Launch Template", value: 1, "text": "OF_TEMPLATE"},
-            {"source": "Launch Template Version", "target": "InstanceType", value: 1, "text": "HAS_TYPE"},
-            {"source": "Launch Template", "target": "InstanceType", value: 1, "text": "HAS_TYPE"},
-            {"source": "Launch Configuration", "target": "InstanceType", value: 1, "text": "HAS_TYPE"},
-            {"source": "AutoScaling Group", "target": "EC2 Instance", value: 1, "text": "HAS_INSTANCE"},
-            {"source": "EC2 Instance", "target": "AutoScaling Group", value: 1, "text": "PART_OF_ASG"},
-            {"source": "EC2 Instance", "target": "InstanceType", value: 1, "text": "HAS_TYPE"}
+            {source: "Launch Configuration", target:"EC2 Image", value: 1, "text": "USES_IMAGE"},
+            {source: "Launch Template Version", target:"EC2 Image", value: 1, "text": "USES_IMAGE"},
+            {source: "Beanstalk Application Version", target:"Beanstalk Application", value: 1, "text": "OF_APP"},
+            {source: "Beanstalk Application", target:"Beanstalk Application Version", value: 1, "text": "HAS_VERSION"},
+            {source: "Beanstalk Application", target:"Beanstalk Application Environment", value: 1, "text": "HAS_ENVIRONMENT"},
+            {source: "Beanstalk Application Environment", target:"Beanstalk Configuration Settings", value: 1, "text": "HAS_CONFIGURATION"},
+            {source: "Beanstalk Configuration Settings", target:"AutoScaling Group", value: 1, "text": "USE_ASG"},
+            {source: "AutoScaling Group", target:"Scaling Activity", value: 1, "text": "HAS_SCALING_ACTIVITY"},
+            {source: "AutoScaling Group", target:"Launch Template Version", value: 1, "text": "HAS_LAUNCH_TEMPLATE_VERSION"},
+            {source: "AutoScaling Group", target:"Launch Template", value: 1, "text": "HAS_LAUNCH_TEMPLATE"},
+            {source: "AutoScaling Group", target:"Launch Configuration", value: 1, "text": "HAS_LAUNCH_CONFIG"},
+            {source: "Launch Template", target:"Launch Template Version", value: 1, "text": "HAS_VERSION"},
+            {source: "Launch Template Version", target:"Launch Template", value: 1, "text": "OF_TEMPLATE"},
+            {source: "Launch Template Version", target:"InstanceType", value: 1, "text": "HAS_TYPE"},
+            {source: "Launch Template", target:"InstanceType", value: 1, "text": "HAS_TYPE"},
+            {source: "Launch Configuration", target:"InstanceType", value: 1, "text": "HAS_TYPE"},
+            {source: "AutoScaling Group", target:"EC2 Instance", value: 1, "text": "HAS_INSTANCE"},
+            {source: "EC2 Instance", target:"AutoScaling Group", value: 1, "text": "PART_OF_ASG"},
+            {source: "EC2 Instance", target:"InstanceType", value: 1, "text": "HAS_TYPE"}
         ]
     };
 
@@ -65,7 +65,7 @@
             sprite.textHeight = 1.5;
             return sprite;
         })
-        .linkPositionUpdate((sprite, { start, end }) => {
+        .linkPositionUpdate((sprite, {start, end}) => {
             const middlePos = Object.assign(...['x', 'y', 'z'].map(c => ({
                 [c]: start[c] + (end[c] - start[c]) / 2 // calc middle point
             })));

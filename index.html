@@ -26,8 +26,6 @@
             {id: "InstanceType", group: 3},
             {id: "Beanstalk Configuration Settings", group: 1},
             {id: "Beanstalk Application Environment", group: 1},
-            {id: "EC2 Price", group: 3},
-            {id: "Region", group: 5},
             {id: "Beanstalk Application", group: 1},
             {id: "Beanstalk Application Version", group: 1},
         ],
@@ -50,11 +48,7 @@
             {"source": "Launch Configuration", "target": "InstanceType", value: 1, "text": "HAS_TYPE"},
             {"source": "AutoScaling Group", "target": "EC2 Instance", value: 1, "text": "HAS_INSTANCE"},
             {"source": "EC2 Instance", "target": "AutoScaling Group", value: 1, "text": "PART_OF_ASG"},
-            {"source": "EC2 Instance", "target": "InstanceType", value: 1, "text": "HAS_TYPE"},
-            {"source": "EC2 Instance", "target": "Region", value: 1, "text": "IN_REGION"},
-            {"source": "EC2 Price", "target": "Region", value: 1, "text": "IN_REGION"},
-            {"source": "EC2 Price", "target": "InstanceType", value: 1, "text": "HAS_TYPE"},
-            {"source": "EC2 Price", "target": "EC2 Image", value: 1, "text": "PRICE_OF"},
+            {"source": "EC2 Instance", "target": "InstanceType", value: 1, "text": "HAS_TYPE"}
         ]
     };
 
